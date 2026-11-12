@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUMIQ Launch Kit</title>
+<meta name="description" content="Ein Briefing rein, ein komplettes Launch Kit raus: KI-Texte für LinkedIn, Website, Newsletter und Instagram, geprüft von KI und Regeln, freigegeben von einem Menschen.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23B7A7F4'/%3E%3Cstop offset='1' stop-color='%236658D9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='34' fill='none' stroke='url(%23g)' stroke-width='17'/%3E%3Cpath d='M55 66C65 66 75 75 88 88L103 101C90 104 81 100 73 93L53 75Z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#151B36; --violet:#6658D9; --violet-dark:#5446C4; --lavender:#B7A7F4; --ice:#F3F0FA;
+  --deep:#0B0F22; --card:rgba(255,255,255,.04); --line:rgba(183,167,244,.18);
+  --text:#E6E3F5; --soft:#A9A6C4;
+  --ff-head:"Manrope",system-ui,sans-serif; --ff-body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);font-size:17px;line-height:1.6;color:var(--text);background:var(--deep);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--lavender)}
+h1,h2,h3{font-family:var(--ff-head);line-height:1.15;letter-spacing:-.015em;color:#fff}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--lavender);font-weight:600;margin-bottom:14px}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:16px}
+.lead{color:var(--soft);max-width:640px}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:rgba(11,15,34,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-family:var(--ff-head);font-weight:800;font-size:19px;letter-spacing:.03em}
+.logo span{color:var(--lavender);font-weight:600}
+.nav a.small{font-size:14px;text-decoration:none;color:var(--soft)}
+.nav a.small:hover{color:#fff}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:16px;padding:14px 26px;border-radius:12px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .2s,background .2s,box-shadow .25s;font-family:var(--ff-body)}
+.btn-primary{background:var(--violet);color:#fff;box-shadow:0 8px 30px rgba(102,88,217,.35)}
+.btn-primary:hover{background:var(--violet-dark);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#fff;border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--lavender)}
+.btn[aria-disabled="true"]{opacity:.55;pointer-events:none;box-shadow:none}
+
+/* hero */
+.hero{padding:96px 0 72px;position:relative}
+.hero::before{content:"";position:absolute;inset:-120px 0 auto 0;height:520px;background:radial-gradient(600px 300px at 70% 30%,rgba(102,88,217,.35),transparent 70%),radial-gradient(500px 260px at 15% 10%,rgba(183,167,244,.16),transparent 70%);pointer-events:none;z-index:-1}
+.hero h1{font-size:clamp(36px,6vw,62px);max-width:820px;margin-bottom:22px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--lavender),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:19px;color:var(--soft);max-width:640px;margin-bottom:32px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.cta-note{font-size:14px;color:var(--soft);margin-top:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px;max-width:760px}
+.stat{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--card)}
+.stat b{display:block;font-family:var(--ff-head);font-size:26px;color:#fff}
+.stat small{color:var(--soft);font-size:14px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;counter-reset:s}
+.step{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--card);position:relative}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--ff-head);font-weight:800;color:var(--lavender);font-size:15px;display:block;margin-bottom:10px}
+.step h3{font-size:18px;margin-bottom:6px}
+.step p{font-size:15px;color:var(--soft)}
+.step .tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;margin-top:12px;background:rgba(183,167,244,.12);color:var(--lavender)}
+.step.human{border-color:rgba(183,167,244,.55);background:rgba(102,88,217,.12)}
+
+/* outputs */
+.grid-out{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+.out{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--card)}
+.out h3{font-size:16px;margin-bottom:4px}
+.out p{font-size:14.5px;color:var(--soft)}
+
+/* quality */
+.light{background:var(--ice);color:var(--navy)}
+.light h2,.light h3{color:var(--navy)}
+.light .lead{color:#4A5070}
+.light .eyebrow{color:var(--violet)}
+.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.layer{background:#fff;border:1px solid #E2DDF2;border-radius:16px;padding:24px}
+.layer h3{font-size:19px;margin-bottom:8px}
+.layer p{font-size:15px;color:#4A5070}
+.learn{margin-top:36px;background:#fff;border:1px solid #E2DDF2;border-radius:16px;overflow:hidden}
+.learn-row{display:grid;grid-template-columns:150px 1fr 1fr;gap:18px;padding:16px 22px;border-top:1px solid #EEEAF8;font-size:15px}
+.learn-row:first-child{border-top:none;font-weight:600;color:var(--violet);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.learn-row b{color:var(--navy)}
+
+/* briefings */
+.briefs{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px}
+.brief{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--card)}
+.brief h3{font-size:19px;margin-bottom:4px}
+.brief .meta{font-size:14px;color:var(--soft);margin-bottom:14px}
+.field{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid rgba(183,167,244,.1)}
+.field div{flex:1;min-width:0}
+.field small{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--lavender)}
+.field span{font-size:14.5px;color:var(--text)}
+.copy{flex:none;font:600 12px var(--ff-body);color:var(--lavender);background:rgba(183,167,244,.1);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.copy:hover{border-color:var(--lavender)}
+.copy.ok{color:#fff;background:var(--violet)}
+
+/* notice */
+.notice{border:1px solid var(--line);border-left:4px solid var(--lavender);border-radius:12px;padding:20px 22px;background:var(--card);margin-top:28px}
+.notice h3{font-size:17px;margin-bottom:8px}
+.notice ul{padding-left:20px;color:var(--soft);font-size:15px}
+.notice li{margin:4px 0}
+
+.final{text-align:center}
+.final .lead{margin:0 auto 28px}
+
+footer{border-top:1px solid var(--line);padding:32px 0;font-size:14px;color:var(--soft)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+@media (max-width:820px){
+  .steps,.grid-out,.layers{grid-template-columns:1fr 1fr}
+  .briefs{grid-template-columns:1fr}
+  .learn-row{grid-template-columns:1fr;gap:4px}
+  .learn-row:first-child{display:none}
+}
+@media (max-width:560px){
+  section{padding:56px 0}
+  .hero{padding:64px 0 48px}
+  .steps,.grid-out,.layers,.stats{grid-template-columns:1fr}
+  .nav a.small{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="LUMIQ Launch Kit">
+      <svg width="28" height="28" viewBox="0 0 110 110" aria-hidden="true"><defs><linearGradient id="qg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B7A7F4"/><stop offset=".55" stop-color="#8E78EB"/><stop offset="1" stop-color="#6658D9"/></linearGradient></defs><circle cx="50" cy="50" r="34" fill="none" stroke="url(#qg)" stroke-width="17"/><path d="M55 66C65 66 75 75 88 88L103 101C90 104 81 100 73 93L53 75Z" fill="url(#qg)"/></svg>
+      LUMIQ <span>Launch Kit</span>
+    </a>
+    <a class="small" href="https://lumiq-studio-ki.netlify.app/">Zur LUMIQ-Website →</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">KI-Demo · Content Engine</p>
+    <h1>Ein Briefing rein.<br><em>Ein komplettes Launch Kit</em> raus.</h1>
+    <p>Für einen Produktlaunch brauchen kleine B2B-Marketingteams Texte für viele Kanäle. Von Hand dauert das mehrere Tage. Das LUMIQ Launch Kit erstellt alles in wenigen Minuten: geprüft von KI und festen Regeln, freigegeben von einem Menschen.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary js-form" href="#" target="_blank" rel="noopener">Launch Kit testen →</a>
+      <a class="btn btn-ghost" href="#ablauf">So funktioniert's</a>
+    </div>
+    <p class="cta-note js-form-note"></p>
+    <div class="stats">
+      <div class="stat"><b>2–3 Min.</b><small>statt mehrerer Tage Handarbeit</small></div>
+      <div class="stat"><b>6 Bausteine</b><small>für 4 Kanäle + Bild + Postingplan</small></div>
+      <div class="stat"><b>3 Prüfstufen</b><small>KI, Regeln und Mensch</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="ablauf">
+  <div class="wrap">
+    <p class="eyebrow">Ablauf</p>
+    <h2>So entsteht ein Launch Kit</h2>
+    <p class="lead">Der Prozess läuft automatisch in n8n. Nur die letzte Entscheidung trifft immer ein Mensch.</p>
+    <div class="steps">
+      <div class="step"><h3>Briefing</h3><p>Unternehmen, Produkt, Zielgruppe, Vorteile, Anlass und Tonalität in ein kurzes Formular eintragen.</p><span class="tag">n8n Form</span></div>
+      <div class="step"><h3>KI-Texter</h3><p>Ein Sprachmodell schreibt alle Texte nach 10 festen Regeln: nur Fakten aus dem Briefing, keine erfundenen Zahlen oder Kundenstimmen.</p><span class="tag">Google Gemma 4 · Fallback NVIDIA Nemotron</span></div>
+      <div class="step"><h3>KI-Qualitätscheck</h3><p>Ein zweites Modell prüft jeden Satz gegen das Briefing, unterscheidet „kritisch“ und „Hinweis“ und vergibt einen Score von 1 bis 10.</p><span class="tag">OpenRouter</span></div>
+      <div class="step"><h3>Regel-Check ohne KI</h3><p>Fester Code prüft auf fremde Schriftzeichen, kritische Begriffe wie „Studie“ oder „Prozent“ und leere Texte.</p><span class="tag">JavaScript</span></div>
+      <div class="step human"><h3>Freigabe durch Mensch</h3><p>Das fertige Paket kommt per E-Mail mit den Buttons „Freigeben“ oder „Ablehnen“. Ohne Freigabe geht nichts raus.</p><span class="tag">Human in the Loop · Gmail</span></div>
+      <div class="step"><h3>Content-Plan</h3><p>Alle Texte, Status und Score landen als neue Zeile im Content-Plan.</p><span class="tag">Google Sheets</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Ergebnis</p>
+    <h2>Was im Launch Kit steckt</h2>
+    <div class="grid-out">
+      <div class="out"><h3>LinkedIn-Post</h3><p>120–180 Wörter, starker Hook, Call-to-Action, 3 Hashtags.</p></div>
+      <div class="out"><h3>Website-Text</h3><p>Headline, zwei kurze Absätze, drei Vorteile, Call-to-Action.</p></div>
+      <div class="out"><h3>Newsletter</h3><p>Betreffzeile bis 60 Zeichen und ein Text mit ca. 120 Wörtern.</p></div>
+      <div class="out"><h3>Instagram</h3><p>Kurze Caption bis 80 Wörter, sparsam Emojis, 5 Hashtags.</p></div>
+      <div class="out"><h3>Bildidee</h3><p>Ein KI-Bild mit dem Produkt im Einsatz, erzeugt mit Pollinations.ai.</p></div>
+      <div class="out"><h3>Postingplan</h3><p>6 Termine über 14 Tage auf LinkedIn, Instagram, Newsletter und Website.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="light">
+  <div class="wrap">
+    <p class="eyebrow">Qualität</p>
+    <h2>Warum drei Prüfstufen?</h2>
+    <p class="lead">Die Tests haben gezeigt: KI prüft KI nicht zuverlässig. Qualität entsteht erst im Zusammenspiel.</p>
+    <div class="layers">
+      <div class="layer"><h3>KI</h3><p>Schreibt schnell und prüft Inhalte gegen das Briefing. Gut für Tempo und erste Einschätzung.</p></div>
+      <div class="layer"><h3>Regeln</h3><p>Fester Code findet zuverlässig, was die KI übersieht: fremde Zeichen, verbotene Begriffe, leere Felder.</p></div>
+      <div class="layer"><h3>Mensch</h3><p>Entscheidet am Ende. Die KI wird getestet und kalibriert wie ein neuer Mitarbeitender.</p></div>
+    </div>
+    <div class="learn">
+      <div class="learn-row"><span>Test</span><span>Was passiert ist</span><span>Was ich gelernt habe</span></div>
+      <div class="learn-row"><b>1 · LiftMate</b><span>Erfundene Statistik und chinesische Schriftzeichen im Text. Der KI-Check gab trotzdem 8/10.</span><span>Freie Modelle brauchen einen Fallback. KI prüft KI nicht zuverlässig.</span></div>
+      <div class="learn-row"><b>2 · FarmCube</b><span>Erfundene technische Details. Der KI-Check fand sie, war aber mit 1/10 viel zu streng.</span><span>Die Prüfung braucht Stufen: kritisch und Hinweis.</span></div>
+      <div class="learn-row"><b>3 · FarmCube</b><span>Neue Regeln und kalibrierter Check: saubere Texte, alle Call-to-Actions, freigegeben.</span><span>Der Mensch entscheidet zuletzt.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="testen">
+  <div class="wrap">
+    <p class="eyebrow">Selbst ausprobieren</p>
+    <h2>Beispiel-Briefings zum Kopieren</h2>
+    <p class="lead">Keine Idee für ein Produkt? Nimm eins der beiden fiktiven Test-Briefings und kopiere die Felder ins Formular.</p>
+    <div class="briefs">
+      <div class="brief">
+        <h3>LiftMate</h3>
+        <p class="meta">ErgoMotion GmbH, Dortmund · Produktlaunch · inspirierend</p>
+        <div class="field"><div><small>Unternehmen</small><span>ErgoMotion GmbH, Dortmund</span></div><button class="copy" type="button">Kopieren</button></div>
+        <div class="field"><div><small>Produktname</small><span>LiftMate</span></div><button class="copy" type="button">Kopieren</button></div>
+        <div class="field"><div><small>Produktbeschreibung</small><span>LiftMate ist ein leichtes, passives Exoskelett, das wie ein Rucksack getragen wird. Es entlastet den unteren Rücken beim Heben und Bücken – ganz ohne Motor oder Akku. In wenigen Sekunden an- und abgelegt, unter normaler Arbeitskleidung tragbar.</span></div><button class="copy" type="button">Kopieren</button></div>
+        <div class="field"><div><small>Zielgruppe</small><span>Leitungen von Lager, Logistik und Produktion sowie Arbeitsschutz- und HR-Verantwortliche in mittelständischen Unternehmen</span></div><button class="copy" type="button">Kopieren</button></div>
+        <div class="field"><div><small>Wichtigste Vorteile</small><span>Entlastet den Rücken bei wiederkehrendem Heben; kein Akku, keine Wartung; schnell an- und ablegbar; fördert Gesundheit und Motivation der Mitarbeitenden; einfach im Alltag einsetzbar</span></div><button class="copy" type="button">Kopieren</button></div>
+      </div>
+      <div class="brief">
+        <h3>FarmCube</h3>
+        <p class="meta">GreenStack Systems, Düsseldorf · Messe · nahbar &amp; locker</p>
+        <div class="field"><div><small>Unternehmen</small><span>GreenStack Systems, Düsseldorf</span></div><button class="copy" type="button">Kopieren</button></div>
+        <div class="field"><div><small>Produktname</small><span>FarmCube</span></div><button class="copy" type="button">Kopieren</button></div>
+        <div class="field"><div><small>Produktbeschreibung</small><span>FarmCube ist eine vertikale Indoor-Farm in einem Container. Sie wird direkt auf dem Firmengelände aufgestellt und liefert frische Salate und Kräuter für Kantine und Catering – ganzjährig, ohne Pestizide und mit kurzen Wegen.</span></div><button class="copy" type="button">Kopieren</button></div>
+        <div class="field"><div><small>Zielgruppe</small><span>Kantinen- und Facility-Verantwortliche, Nachhaltigkeitsmanager in Unternehmen, Caterer</span></div><button class="copy" type="button">Kopieren</button></div>
+        <div class="field"><div><small>Wichtigste Vorteile</small><span>Frische Lebensmittel direkt vor Ort; unabhängig von Jahreszeit und Wetter; sichtbares Nachhaltigkeitsprojekt für Mitarbeitende und Besucher; kurze Lieferwege; einfache Bedienung</span></div><button class="copy" type="button">Kopieren</button></div>
+      </div>
+    </div>
+
+    <div class="notice">
+      <h3>Gut zu wissen</h3>
+      <ul>
+        <li>Das Launch Kit geht zur Prüfung per E-Mail an das LUMIQ-Team. Du siehst nach dem Absenden eine Bestätigung, aber nicht direkt die Texte.</li>
+        <li>Die Demo nutzt kostenlose KI-Modelle mit Tageslimit. Wenn es mal hakt, bitte später erneut versuchen.</li>
+        <li>Bitte keine echten Firmengeheimnisse oder persönlichen Daten eintragen.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Bereit für den Test?</h2>
+    <p class="lead">Briefing ausfüllen, absenden, fertig. Den Rest erledigt die Content Engine.</p>
+    <a class="btn btn-primary js-form" href="#" target="_blank" rel="noopener">Launch Kit testen →</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>LUMIQ STUDIO · Human Creativity. Intelligent Growth.</span>
+    <span>Abschlussprojekt KI-Manager:in, STARTPLATZ AI Academy. LUMIQ STUDIO ist ein fiktives Agenturkonzept.</span>
+  </div>
+</footer>
+
+<script>
+// Production-URL der n8n-Form hier eintragen (aus dem Node "LUMIQ Briefing")
+var FORM_URL = "";
+
+(function () {
+  var links = document.querySelectorAll(".js-form");
+  var note = document.querySelector(".js-form-note");
+  for (var i = 0; i < links.length; i++) {
+    if (FORM_URL) { links[i].href = FORM_URL; }
+    else { links[i].setAttribute("aria-disabled", "true"); links[i].removeAttribute("href"); }
+  }
+  if (!FORM_URL && note) note.textContent = "Die Demo wird gerade freigeschaltet. Bitte schau bald wieder vorbei.";
+
+  var buttons = document.querySelectorAll(".copy");
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].addEventListener("click", function () {
+      var btn = this;
+      var text = btn.parentNode.querySelector("span").textContent;
+      var done = function () {
+        btn.textContent = "Kopiert ✓"; btn.classList.add("ok");
+        setTimeout(function () { btn.textContent = "Kopieren"; btn.classList.remove("ok"); }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+      } else { fallback(text); done(); }
+    });
+  }
+  function fallback(text) {
+    var t = document.createElement("textarea");
+    t.value = text; t.style.position = "fixed"; t.style.opacity = "0";
+    document.body.appendChild(t); t.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(t);
+  }
+})();
+</script>
+</body>
+</html>
